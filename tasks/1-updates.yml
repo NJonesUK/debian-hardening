@@ -4,3 +4,4 @@
   apt:
     name: unattended-upgrades
     state: present
+  become: true
