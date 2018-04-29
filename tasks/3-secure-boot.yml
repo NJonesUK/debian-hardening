@@ -4,9 +4,8 @@
     path: /boot/grub/grub.cfg
     owner: root
     group: root
-    mode: og-rwx 
+    mode: og-rwx
   become: "yes"
 
-# 3.3 skipped - bootloader password irrelevant for VMs
-
-# 3.4 skipped - not possible to do automatically, root password should be set by user in advance
+  # 3.3 skipped - bootloader password irrelevant for VMs
+  # 3.4 skipped - not possible to do automatically, root password should be set by user in advance
