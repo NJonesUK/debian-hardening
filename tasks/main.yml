@@ -1,2 +1,10 @@
 ---
 # tasks file for debian-hardening
+
+# Section 1 - Software Updates
+- include: 1-updates.yml
+  tags: updates
+
+# Section 3- Secure Boot Settings
+- include: 3-secure-boot.yml
+  tags: secure-boot
