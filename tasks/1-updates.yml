@@ -1,6 +1,6 @@
 ---
 # Tasks for Section 1 - Updates
-- name: Enable automatic updates
+- name: 1.1 - Enable automatic updates
   apt:
     name: unattended-upgrades
     state: present
