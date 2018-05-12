@@ -14,6 +14,8 @@ provisioner:
   name: ansible
   lint:
     name: ansible-lint
+    options:
+      x: ["ANSIBLE0012,ANSIBLE0013"]
 scenario:
   name: default
 verifier:
