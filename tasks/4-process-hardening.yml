@@ -8,16 +8,16 @@
 
 - name: 4.1 - Restrict Core Dumps - sysctl.conf
   lineinfile:
-    path: /etc/sysctl.conf 
+    path: /etc/sysctl.conf
     state: present
     regexp: 'fs.suid_dumpable'
     line: 'fs.suid_dumpable = 0'
 
-  # 4.2 - Enable XD/NX Support on 32-bit x86 Systems - ignored due to necessary kernel mods
+# 4.2 - Enable XD/NX Support on 32-bit x86 Systems - ignored due to necessary kernel mods
 
 - name: 4.3 - Enable Randomized Virtual Memory Region Placement 
   lineinfile:
-    path: /etc/sysctl.conf 
+    path: /etc/sysctl.conf
     state: present
     regexp: 'kernel.randomize_va_space'
     line: 'kernel.randomize_va_space = 2'
