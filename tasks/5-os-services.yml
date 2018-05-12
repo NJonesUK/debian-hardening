@@ -1,7 +1,7 @@
 ---
 - name: 5.1 - Ensure legacy services and clients are not present
   apt:
-    name: {{ item }}
+    name: "{{ item }}"
     state: absent
   with_items:
     - nis
