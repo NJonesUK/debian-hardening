@@ -1,4 +1,4 @@
-----
+---
 - name: 5.1 - Ensure legacy services and clients are not present
   apt:
     name: {{ item }}
