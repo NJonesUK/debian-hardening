@@ -1,0 +1,34 @@
+---
+- name: 4.1 - Restrict Core Dumps - limits.conf
+  lineinfile:
+    path: /etc/security/limits.conf
+    state: present
+    regexp: '\* hard core'
+    line: "* hard core 0"
+
+- name: 4.1 - Restrict Core Dumps - sysctl.conf
+  lineinfile:
+    path: /etc/sysctl.conf 
+    state: present
+    regexp: 'fs.suid_dumpable'
+    line: 'fs.suid_dumpable = 0'
+
+  # 4.2 - Enable XD/NX Support on 32-bit x86 Systems - ignored due to necessary kernel mods
+
+- name: 4.3 - Enable Randomized Virtual Memory Region Placement 
+  lineinfile:
+    path: /etc/sysctl.conf 
+    state: present
+    regexp: 'kernel.randomize_va_space'
+    line: 'kernel.randomize_va_space = 2'
+
+- name: 4.4 - Disable prelink
+  shell: /usr/sbin/prelink -ua
+  ignore_errors: "true"
+  become: "true"
+
+- name: 4.4 - Remove prelink
+  apt:
+    name: prelink
+    state: absent
+  become: "true"

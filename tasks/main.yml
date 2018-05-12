@@ -8,3 +8,11 @@
 # Section 3- Secure Boot Settings
 - include: 3-secure-boot.yml
   tags: secure-boot
+
+# Section 3- Secure Boot Settings
+- include: 4-process-hardening.yml
+  tags: process-hardening
+  
+# Section 3- Secure Boot Settings
+- include: 5-os-services.yml
+  tags: os-services

@@ -1,0 +1,22 @@
+----
+
+- name: 5.1 - Ensure legacy services and clients are not present
+  apt:
+    name: {{ item }}
+    state: absent
+  become: "true"
+  with_items:
+  - nis
+  - rsh-server
+  - rsh-client
+  - rsh-redone-client
+  - talkd 
+  - talk
+  - telnet-server
+  - tftp
+  - atftp
+  - xinetd
+
+- name: 5.1.8 - Ensure xinetd is not enabled
+  shell: update-rc.d xinetd disable
+  become: "true"
