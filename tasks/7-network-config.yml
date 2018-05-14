@@ -84,7 +84,7 @@
     reload: "yes"
     sysctl_set: "yes"
   with_items:
-    - icmp_ignore_bogus_error_responses
+    - net.ipv4.icmp_ignore_bogus_error_responses
   become: "yes"
 
 - name: 7.2.7 - Enable RFC-recommended Source Route Validation

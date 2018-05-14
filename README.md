@@ -1,23 +1,18 @@
-Role Name
+Debian-Hardening
 =========
 
-A brief description of the role goes here.
+An ansible role for hardening debian based systems. Built from the Debian 8 CIS Benchmark - CIS_Debian_Linux_8_Benchmark_v1.0.0.pdf
 
 Requirements
 ------------
-
-Any pre-requisites that may not be covered by Ansible itself or the role should
-be mentioned here. For instance, if the role uses the EC2 module, it may be a
-good idea to mention in this section that the boto package is required.
+Only runs on debian-based systems.
 
 Role Variables
 --------------
-
-A description of the settable variables for this role should go here, including
-any variables that are in defaults/main.yml, vars/main.yml, and any variables
-that can/should be set via parameters to the role. Any variables that are read
-from other roles and/or the global scope (ie. hostvars, group vars, etc.) should
-be mentioned here as well.
+Important ones are:
+* disable_ipv6 - sets whether IPv6 is enabled on the network interfaces or not
+* ufw_tcp_allow - list of TCP ports to allow through the firewall
+* ufw_udp_allow - list of UDP ports to allow through the firewall
 
 Dependencies
 ------------
@@ -44,5 +39,4 @@ BSD
 Author Information
 ------------------
 
-An optional section for the role authors to include contact information, or a
-website (HTML is not allowed).
+Authored by Nick Jones.
