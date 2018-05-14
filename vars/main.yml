@@ -1,2 +1,7 @@
 ---
 # vars file for debian-hardening
+disable_ipv6: "true"
+
+# TCP ports to open in firewall
+ufw_tcp_allow:
+  - 22

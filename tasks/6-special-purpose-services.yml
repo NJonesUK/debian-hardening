@@ -1,0 +1,61 @@
+---
+- name: 6.1-6.4, 6.6-6.16 - Remove extraneous services
+  apt:
+    name: "{{ item }}"
+    state: absent
+  with_items:
+    - xserver-xorg-core*
+    - avahi-daemon
+    - cups
+    - isc-dhcp-server
+    - slapd
+    - bind9
+    - nfs-kernel-server 
+    - portmap
+    - vsftpd
+    - apache2
+    - nginx
+    - dovecot
+    - samba
+    - samba-client
+    - squid3
+    - snmpd
+    - exim4
+    - sendmail
+    - rsync
+
+- name: 6.5 Configure Network Time Protocol - ensure ntp is installed
+  apt:
+    name: ntp
+    state: present
+
+- name: 6.5 Configure Network Time Protocol - apply ntp restrictions -4
+  lineinfile:
+    path: /etc/ntp.conf
+    state: present
+    regexp: 'restrict -4'
+    line: 'restrict -4 default kod nomodify notrap nopeer noquery'
+
+- name: 6.5 Configure Network Time Protocol - apply ntp restrictions -6
+  lineinfile:
+    path: /etc/ntp.conf
+    state: present
+    regexp: 'restrict -4'
+    line: 'restrict -6 default kod nomodify notrap nopeer noquery'
+
+- name: 6.5 Configure Network Time Protocol - purge existing time servers
+  lineinfile:
+    path: /etc/ntp.conf
+    state: present
+    regexp: 'server '
+
+- name: 6.5 Configure Network Time Protocol - configure Google time servers
+  lineinfile:
+    path: /etc/ntp.conf
+    state: present
+    line: "{{ item }}"
+  with_items:
+    - server time1.google.com iburst
+    - server time2.google.com iburst
+    - server time3.google.com iburst
+    - server time4.google.com iburst

@@ -24,3 +24,4 @@
 - name: 5.1.8 - Ensure xinetd is not enabled
   shell: update-rc.d xinetd disable
   become: "true"
+  ignore_errors: "true"

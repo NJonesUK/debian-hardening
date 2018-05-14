@@ -5,14 +5,30 @@
 - include: 1-updates.yml
   tags: updates
 
-# Section 3- Secure Boot Settings
+# Section 3 - Secure Boot Settings
 - include: 3-secure-boot.yml
   tags: secure-boot
 
-# Section 3- Secure Boot Settings
+# Section 4 - Process Hardening
 - include: 4-process-hardening.yml
   tags: process-hardening
 
-# Section 3- Secure Boot Settings
+# Section 5 - OS service configuration
 - include: 5-os-services.yml
   tags: os-services
+
+# Section 5 - OS service configuration
+- include: 5-os-services.yml
+  tags: os-services
+  
+# Section 6 - General service configuration
+- include: 6-special-purpose-services.yml
+  tags: specific-services
+  
+# Section 7 - Network configuration
+- include: 7-network-config.yml
+  tags: network-config
+
+# Section 7 - Firewalling
+- include: 7-firewall.yml
+  tags: firewall
