@@ -2,11 +2,11 @@
 # handlers file for debian-hardening
 
 - name: restart sshd
-  service: 
-    name: ssh 
+  service:
+    name: ssh
     state: restarted
 
 - name: reload ufw
-  ufw: 
+  ufw:
     state: reloaded
-  ignore_errors: yes
+  ignore_errors: "yes"

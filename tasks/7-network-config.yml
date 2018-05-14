@@ -3,29 +3,29 @@
   sysctl:
     name: net.ipv4.ip_forward
     value: 0
-    reload: yes
-    sysctl_set: yes
+    reload: "yes"
+    sysctl_set: "yes"
 
 - name: 7.1.2 - Disable Send Packet Redirects (all)
   sysctl:
     name: net.ipv4.conf.all.send_redirects
     value: 0
-    reload: yes
-    sysctl_set: yes
+    reload: "yes"
+    sysctl_set: "yes"
 
 - name: 7.1.2 - Disable Send Packet Redirects (default)
   sysctl:
-    name: net.ipv4.conf.default.send_redirects 
+    name: net.ipv4.conf.default.send_redirects
     value: 0
-    reload: yes
-    sysctl_set: yes
+    reload: "yes"
+    sysctl_set: "yes"
 
 - name: 7.2.1 - Disable Source Routed Packet Acceptance
   sysctl:
     name: "{{ item }}"
     value: 0
-    reload: yes
-    sysctl_set: yes
+    reload: "yes"
+    sysctl_set: "yes"
   with_items:
     - net.ipv4.conf.all.accept_source_route
     - net.ipv4.conf.default.accept_source_route
@@ -34,8 +34,8 @@
   sysctl:
     name: "{{ item }}"
     value: 0
-    reload: yes
-    sysctl_set: yes
+    reload: "yes"
+    sysctl_set: "yes"
   with_items:
     - net.ipv4.conf.all.accept_redirects
     - net.ipv4.conf.default.accept_redirects
@@ -44,8 +44,8 @@
   sysctl:
     name: "{{ item }}"
     value: 0
-    reload: yes
-    sysctl_set: yes
+    reload: "yes"
+    sysctl_set: "yes"
   with_items:
     - net.ipv4.conf.all.secure_redirects
     - net.ipv4.conf.default.secure_redirects
@@ -54,8 +54,8 @@
   sysctl:
     name: "{{ item }}"
     value: 1
-    reload: yes
-    sysctl_set: yes
+    reload: "yes"
+    sysctl_set: "yes"
   with_items:
     - net.ipv4.conf.all.log_martians
     - net.ipv4.conf.default.log_martians
@@ -64,17 +64,17 @@
   sysctl:
     name: "{{ item }}"
     value: 1
-    reload: yes
-    sysctl_set: yes
+    reload: "yes"
+    sysctl_set: "yes"
   with_items:
-    - net.ipv4.icmp_echo_ignore_broadcasts 
+    - net.ipv4.icmp_echo_ignore_broadcasts
 
 - name: 7.2.6 - Enable Bad Error Message Protection
   sysctl:
     name: "{{ item }}"
     value: 1
-    reload: yes
-    sysctl_set: yes
+    reload: "yes"
+    sysctl_set: "yes"
   with_items:
     - icmp_ignore_bogus_error_responses
 
@@ -82,18 +82,18 @@
   sysctl:
     name: "{{ item }}"
     value: 1
-    reload: yes
-    sysctl_set: yes
+    reload: "yes"
+    sysctl_set: "yes"
   with_items:
     - net.ipv4.conf.all.rp_filter
-    - net.ipv4.conf.default.rp_filter 
+    - net.ipv4.conf.default.rp_filter
 
 - name: 7.2.8 - Enable TCP SYN Cookies
   sysctl:
     name: "{{ item }}"
     value: 1
-    reload: yes
-    sysctl_set: yes
+    reload: "yes"
+    sysctl_set: "yes"
   with_items:
     - net.ipv4.tcp_syncookies
 
@@ -101,8 +101,8 @@
   sysctl:
     name: "{{ item }}"
     value: 0
-    reload: yes
-    sysctl_set: yes
+    reload: "yes"
+    sysctl_set: "yes"
   with_items:
     - net.ipv6.conf.all.accept_ra
     - net.ipv6.conf.default.accept_ra
@@ -111,8 +111,8 @@
   sysctl:
     name: "{{ item }}"
     value: 0
-    reload: yes
-    sysctl_set: yes
+    reload: "yes"
+    sysctl_set: "yes"
   with_items:
     - net.ipv6.conf.all.accept_redirects
     - net.ipv6.conf.default.accept_redirects
@@ -121,8 +121,8 @@
   sysctl:
     name: "{{ item }}"
     value: 1
-    reload: yes
-    sysctl_set: yes
+    reload: "yes"
+    sysctl_set: "yes"
   when: disable_ipv6 == "true"
   with_items:
     - net.ipv6.conf.all.disable_ipv6

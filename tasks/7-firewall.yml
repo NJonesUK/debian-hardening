@@ -5,26 +5,26 @@
     state: present
 
 - name: 7.7 - Add UFW TCP rules
-  ufw: 
-    rule: allow 
-    proto: tcp 
+  ufw:
+    rule: allow
+    proto: tcp
     port: "{{ item }}"
   notify:
     - reload ufw
   with_items: "{{ ufw_tcp_allow | default([22]) }}"
 
 - name: 7.7 - Add UFW UDP rules
-  ufw: 
-    rule: allow 
-    proto: udp 
+  ufw:
+    rule: allow
+    proto: udp
     port: "{{ item }}"
   notify:
     - reload ufw
   with_items: "{{ ufw_udp_allow | default([]) }}"
 
-- name:  7.7 - Enable UFW, set default policy to deny
-  ufw: 
-    state: enabled 
+- name: 7.7 - Enable UFW, set default policy to deny
+  ufw:
+    state: enabled
     policy: deny
   notify:
     - reload ufw

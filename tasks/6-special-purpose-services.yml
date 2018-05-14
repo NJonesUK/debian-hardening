@@ -10,7 +10,7 @@
     - isc-dhcp-server
     - slapd
     - bind9
-    - nfs-kernel-server 
+    - nfs-kernel-server
     - portmap
     - vsftpd
     - apache2

@@ -20,11 +20,11 @@
 # Section 5 - OS service configuration
 - include: 5-os-services.yml
   tags: os-services
-  
+
 # Section 6 - General service configuration
 - include: 6-special-purpose-services.yml
   tags: specific-services
-  
+
 # Section 7 - Network configuration
 - include: 7-network-config.yml
   tags: network-config
