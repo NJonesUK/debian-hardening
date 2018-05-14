@@ -1,3 +1,10 @@
 ---
 # defaults file for debian-hardening
 disable_ipv6: "true"
+
+# TCP ports to open in firewall
+ufw_tcp_allow:
+  - 22
+
+# UDP ports to open in firewall
+ufw_udp_allow: []
