@@ -5,6 +5,7 @@
     value: 0
     reload: "yes"
     sysctl_set: "yes"
+  become: "yes"
 
 - name: 7.1.2 - Disable Send Packet Redirects (all)
   sysctl:
@@ -12,6 +13,7 @@
     value: 0
     reload: "yes"
     sysctl_set: "yes"
+  become: "yes"
 
 - name: 7.1.2 - Disable Send Packet Redirects (default)
   sysctl:
@@ -19,6 +21,7 @@
     value: 0
     reload: "yes"
     sysctl_set: "yes"
+  become: "yes"
 
 - name: 7.2.1 - Disable Source Routed Packet Acceptance
   sysctl:
@@ -29,6 +32,7 @@
   with_items:
     - net.ipv4.conf.all.accept_source_route
     - net.ipv4.conf.default.accept_source_route
+  become: "yes"
 
 - name: 7.2.2 - Disable ICMP Redirect Acceptance
   sysctl:
@@ -39,6 +43,7 @@
   with_items:
     - net.ipv4.conf.all.accept_redirects
     - net.ipv4.conf.default.accept_redirects
+  become: "yes"
 
 - name: 7.2.3 - Disable Secure ICMP Redirect Acceptance
   sysctl:
@@ -49,6 +54,7 @@
   with_items:
     - net.ipv4.conf.all.secure_redirects
     - net.ipv4.conf.default.secure_redirects
+  become: "yes"
 
 - name: 7.2.4 - Log Suspicious Packets
   sysctl:
@@ -59,6 +65,7 @@
   with_items:
     - net.ipv4.conf.all.log_martians
     - net.ipv4.conf.default.log_martians
+  become: "yes"
 
 - name: 7.2.5 - Enable Ignore Broadcast Requests
   sysctl:
@@ -68,6 +75,7 @@
     sysctl_set: "yes"
   with_items:
     - net.ipv4.icmp_echo_ignore_broadcasts
+  become: "yes"
 
 - name: 7.2.6 - Enable Bad Error Message Protection
   sysctl:
@@ -77,6 +85,7 @@
     sysctl_set: "yes"
   with_items:
     - icmp_ignore_bogus_error_responses
+  become: "yes"
 
 - name: 7.2.7 - Enable RFC-recommended Source Route Validation
   sysctl:
@@ -87,6 +96,7 @@
   with_items:
     - net.ipv4.conf.all.rp_filter
     - net.ipv4.conf.default.rp_filter
+  become: "yes"
 
 - name: 7.2.8 - Enable TCP SYN Cookies
   sysctl:
@@ -96,6 +106,7 @@
     sysctl_set: "yes"
   with_items:
     - net.ipv4.tcp_syncookies
+  become: "yes"
 
 - name: 7.3.1 - Disable IPv6 Router Advertisements
   sysctl:
@@ -106,6 +117,7 @@
   with_items:
     - net.ipv6.conf.all.accept_ra
     - net.ipv6.conf.default.accept_ra
+  become: "yes"
 
 - name: 7.3.2 Disable IPv6 Redirect Acceptance
   sysctl:
@@ -116,6 +128,7 @@
   with_items:
     - net.ipv6.conf.all.accept_redirects
     - net.ipv6.conf.default.accept_redirects
+  become: "yes"
 
 - name: 7.3.3 - Disable IPv6
   sysctl:
@@ -128,3 +141,4 @@
     - net.ipv6.conf.all.disable_ipv6
     - net.ipv6.conf.default.disable_ipv6
     - net.ipv6.conf.lo.disable_ipv6
+  become: "yes"

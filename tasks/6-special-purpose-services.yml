@@ -23,11 +23,13 @@
     - exim4
     - sendmail
     - rsync
+  become: "yes"
 
 - name: 6.5 Configure Network Time Protocol - ensure ntp is installed
   apt:
     name: ntp
     state: present
+  become: "yes"
 
 - name: 6.5 Configure Network Time Protocol - apply ntp restrictions -4
   lineinfile:
@@ -35,6 +37,7 @@
     state: present
     regexp: 'restrict -4'
     line: 'restrict -4 default kod nomodify notrap nopeer noquery'
+  become: "yes"
 
 - name: 6.5 Configure Network Time Protocol - apply ntp restrictions -6
   lineinfile:
@@ -42,12 +45,14 @@
     state: present
     regexp: 'restrict -4'
     line: 'restrict -6 default kod nomodify notrap nopeer noquery'
+  become: "yes"
 
 - name: 6.5 Configure Network Time Protocol - purge existing time servers
   lineinfile:
     path: /etc/ntp.conf
-    state: present
+    state: absent
     regexp: 'server '
+  become: "yes"
 
 - name: 6.5 Configure Network Time Protocol - configure Google time servers
   lineinfile:
@@ -59,3 +64,4 @@
     - server time2.google.com iburst
     - server time3.google.com iburst
     - server time4.google.com iburst
+  become: "yes"
