@@ -22,7 +22,6 @@
     - snmpd
     - exim4
     - sendmail
-    - rsync
   become: "yes"
 
 - name: 6.5 Configure Network Time Protocol - ensure ntp is installed

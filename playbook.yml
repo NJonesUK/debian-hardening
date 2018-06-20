@@ -1,0 +1,6 @@
+# file: ansible-server.yml
+- hosts: all
+  become: yes
+  become_method: sudo
+  roles:
+  - role: debian-hardening

@@ -6,6 +6,7 @@
     regexp: '\* hard core'
     line: "* hard core 0"
   become: "true"
+  ignore_errors: "yes"
 
 - name: 4.1 - Restrict Core Dumps - sysctl.conf
   lineinfile:
@@ -14,6 +15,7 @@
     regexp: 'fs.suid_dumpable'
     line: 'fs.suid_dumpable = 0'
   become: "true"
+  ignore_errors: "yes"
 
 # 4.2 - Enable XD/NX Support on 32-bit x86 Systems - ignored due to necessary kernel mods
 
@@ -24,6 +26,7 @@
     regexp: 'kernel.randomize_va_space'
     line: 'kernel.randomize_va_space = 2'
   become: "true"
+  ignore_errors: "yes"
 
 - name: 4.4 - Disable prelink
   shell: /usr/sbin/prelink -ua
@@ -35,3 +38,4 @@
     name: prelink
     state: absent
   become: "true"
+  ignore_errors: "yes"

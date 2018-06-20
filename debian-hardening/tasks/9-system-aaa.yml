@@ -1,0 +1,95 @@
+---
+- name: 9.1.1 - Ensure Cron's enabled
+  service:
+    name: cron
+    state: started
+    enabled: "yes"
+  become: "yes"
+
+- name: 9.1.2-7 - Set /etc/crontab and /etc/cron.* permissions
+  file:
+    path: "{{ item }}"
+    owner: root
+    group: root
+    mode: 0700
+  with_items:
+    - /etc/crontab
+    - /etc/cron.hourly
+    - /etc/cron.daily
+    - /etc/cron.weekly
+    - /etc/cron.monthly
+    - /etc/cron.d
+  become: "yes"
+
+- name: 9.1.8 - Restrict at/cron to Authorized Users
+  file:
+    path: "{{ item }}"
+    state: absent
+  become: "yes"
+  with_items:
+    - "/etc/cron.deny"
+    - "/etc/at.deny"
+
+- name: 9.1.8 - Restrict at/cron to Authorized Users
+  file:
+    path: "{{ item }}"
+    state: touch
+    owner: root
+    group: root
+    mode: 0700
+  with_items:
+    - "/etc/cron.allow"
+    - "/etc/at.allow"
+  become: "yes"
+
+- name: 9.2.1 - Install Cracklib
+  apt:
+    name: libpam-cracklib
+    state: present
+  become: "yes"
+
+- name: 9.2.1 - Update password settings to set minimum requirements
+  lineinfile:
+    path: /etc/pam.d/common-password
+    regexp: '^password required'
+    line: 'password required pam_cracklib.so retry=3 minlen=14 dcredit=-1 ucredit=-1 ocredit=-1 lcredit=-1'
+
+- name: 9.2.2 - Set Lockout for Failed Password Attempts
+  lineinfile:
+    path: /etc/pam.d/login
+    regexp: '^auth required'
+    line: 'auth required pam_tally2.so onerr=fail audit silent deny=5 unlock_time=900'
+
+- name: 9.2.3 - Limit Password Reuse
+  lineinfile:
+    path: /etc/pam.d/login
+    regexp: '^password +\[success=1 default=ignore\]'
+    line: 'password [success=1 default=ignore] pam_unix.so obscure sha512 remember=5'
+
+- name: 9.3 - Upload SSH Configuration
+  template:
+    src: sshd_config.j2
+    dest: /etc/ssh/sshd_config
+    mode: 0600
+  notify: "restart sshd"
+
+- name: 9.3.14 - Set SSH banner
+  template:
+    src: issue.ssh.j2
+    dest: /etc/issue.ssh
+    mode: 0644
+
+# 9.4 Restrict root Login to System Console - left out
+
+- name: 9.5 Restrict Access to the su Command - group config
+  lineinfile:
+    path: /etc/group
+    regexp: 'wheel:x:10'
+    line: wheel:x:10:root
+
+- name: 9.5 Restrict Access to the su Command - update /etc/pam.d/su
+  lineinfile:
+    path:  /etc/pam.d/su
+    regexp: 'auth required pam_wheel.so'
+    line: 'auth required pam_wheel.so use_uid'
+

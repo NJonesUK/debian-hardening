@@ -1,0 +1,38 @@
+---
+# defaults file for debian-hardening
+disable_ipv6: "true"
+
+# TCP ports to open in firewall
+ufw_tcp_allow:
+  - 22
+
+# UDP ports to open in firewall
+ufw_udp_allow: []
+
+# SSH configuration
+sshd_banner: /etc/issue.ssh
+sshd_ciphers: " aes128-ctr,aes192-ctr,aes256-ctr"
+sshd_gssapiauthentication: "no"
+sshd_hostkeyalgorithms: "ssh-ed25519-cert-v01@openssh.com,ssh-rsa-cert-v01@openssh.com,ssh-ed25519,ssh-rsa"
+sshd_kexalgorithms: "curve25519-sha256@libssh.org,diffie-hellman-group-exchange-sha256"
+sshd_macs: "hmac-sha2-512-etm@openssh.com,hmac-sha2-256-etm@openssh.com,hmac-ripemd160-etm@openssh.com,umac-128-etm@openssh.com,hmac-sha2-512,hmac-sha2-256,hmac-ripemd160,umac-128@openssh.com"
+sshd_moduli_remove:
+  - 1023
+  - 1535
+sshd_passwordauthentication: "no"
+sshd_permitemptypasswords: "no"
+sshd_permitrootlogin: "no"
+sshd_pubkeyauthentication: "yes"
+sshd_rsaauthentication: "yes"
+sshd_usedns: "no"
+sshd_usepam: "yes"
+sshd_x11forwarding: "no"
+sshd_permitopen: "localhost:8080"
+sshd_maxauthtries: "3"
+sshd_ignorerhosts: "yes"
+sshd_hostbasedauthentication: "no"
+sshd_permituserenvironments: "no"
+sshd_clientaliveinterval: 300
+sshd_clientalivecountmax: 0
+sshd_allowusers: []
+sshd_allowgroups: []

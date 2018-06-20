@@ -1,0 +1,22 @@
+---
+- name: verify filesystem permissions
+  file:
+    path: "{{ item.path }}"
+    owner: "{{ item.user }}"
+    group: "{{ item.group }}"
+    attributes: "{{ item.attributes }}"
+  become: "yes"
+  with_items:
+    - { path: /etc/passwd,
+        user: root,
+        group: root,
+        attributes: 0644 }
+    - { path: /etc/shadow,
+        user: root,
+        group: shadow,
+        attributes: 0640 }
+    - { path: /etc/group,
+        user: root,
+        group: root,
+        attributes: 0644 }
+  ignore_errors: "yes"

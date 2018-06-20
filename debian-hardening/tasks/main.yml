@@ -32,3 +32,15 @@
 # Section 7 - Firewalling
 - include: 7-firewall.yml
   tags: firewall
+
+# Section 9 - System Access, Authentication and Authorisation
+- include: 9-system-aaa.yml
+  tags: aaa
+
+# Section 10 - User Accounts and Environment
+- include: 10-user-accounts-environment.yml
+  tags: user-accounts
+
+# Section 12 - File Permissions
+- include: 12-filesystem-permissions.yml
+  tags: filesystem-permissions.yml

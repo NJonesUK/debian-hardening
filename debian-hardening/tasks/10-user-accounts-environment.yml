@@ -1,0 +1,20 @@
+---
+# 10.1 ignored per new NCSC guidelines on not forcing password rotations.
+
+# 10.2 also ignored - if the accounts can't be logged into then there's little value IMO in also changing the default shell
+- name: 10.3 - Set Default Group for root Account
+  user:
+    name: root
+    group: root
+  become: "yes"
+
+- name: 10.4 - Set Default umask for Users
+  lineinfile:
+    path: /etc/bash.bashrc
+    regexp: 'umask'
+    line: 'umask 077'
+  become: "yes"
+
+- name: 10.5 - Set accounts inactive after 35 days unused
+  command: useradd -D -f 35
+  become: "yes"
